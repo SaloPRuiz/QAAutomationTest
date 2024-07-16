@@ -1,9 +1,6 @@
 package com.magento.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
@@ -53,16 +50,36 @@ public class ComprobanteFacPage extends BasePage{
     By buttonEmitir=By.id("0401010302_frBusquedaItem_btnEmitir");
     By iframeElement = By.tagName("iframe");
 
+    // SWAL-ALERT
+    By swalTextLocator = By.id("swal2-content");
 
 
 
     public void datosCliente() {
-        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(selectTipoDocClienteValidation, 1));
-        
-        select(selectTipoDocCliente, "RUC");
-        type(inputDocCliente,"10725709400");
-        WebElement buttonSearchDocClientev2 = driver.findElement(buttonSearchDocCliente);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", buttonSearchDocClientev2);
+        int intentos = 0;
+        int intentosMaximos = 5;
+        boolean llenadoExitoso = false;
+
+        while (intentos < intentosMaximos && !llenadoExitoso) {
+            try {
+                wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(selectTipoDocClienteValidation, 1));
+                llenadoExitoso = true; // Si llega aquí sin lanzar excepción, el llenado fue exitoso
+                System.out.println("El select se llenó");
+                select(selectTipoDocCliente, "RUC");
+                type(inputDocCliente,"10725709400");
+                WebElement buttonSearchDocClientev2 = driver.findElement(buttonSearchDocCliente);
+                ((JavascriptExecutor) driver).executeScript("arguments[0].click();", buttonSearchDocClientev2);
+                
+            } catch (TimeoutException e) {
+                System.out.println("El select no se llenó a tiempo, intentando nuevamente...");
+                driver.navigate().refresh(); // Refrescar la página
+                intentos++;
+            }
+        }
+
+        if (!llenadoExitoso) {
+            throw new TimeoutException("No se pudo llenar el select después de " + intentos + " intentos.");
+        }
     }
 
     public void datosDocumento(){
@@ -107,6 +124,15 @@ public class ComprobanteFacPage extends BasePage{
     
     public void validarDocumentoEmitido(){
         //String textoValidacion = "Se Emitió el Documento";
+        wait.until(ExpectedConditions.presenceOfElementLocated(swalTextLocator));
+        WebElement swalTextElement = driver.findElement(swalTextLocator);
+        String actualSwalText = swalTextElement.getText();
+        String expectedSwalText = "Se Emitió el Documento";
+
+        Assert.assertEquals(expectedSwalText, actualSwalText);
+        // Imprimir mensaje en la consola
+        System.out.println("El texto del swal es: " + actualSwalText);
+        
         
         wait.until(ExpectedConditions.presenceOfElementLocated(iframeElement));
         //Assert.assertEquals(abc,textoValidacion);
