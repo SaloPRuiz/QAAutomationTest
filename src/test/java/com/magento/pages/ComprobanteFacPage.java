@@ -4,6 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
+
+import java.io.Console;
 
 public class ComprobanteFacPage extends BasePage{
 
@@ -13,11 +17,13 @@ public class ComprobanteFacPage extends BasePage{
 
     //Datos del cliente
     By selectTipoDocCliente = By.xpath("//select[@id='tipoDocumentoCliente']");
+    By selectTipoDocClienteValidation = By.xpath("//select[@id='tipoDocumentoCliente']/option");
     By inputDocCliente= By.xpath("//input[@id='dniRuc']");
     By buttonSearchDocCliente =By.xpath("//button[@ngbtooltip='Buscar entidad']");
 
 
     //Datos del documento
+    By selecsSerieDocsValidation = By.xpath("//*[@id=\"0401040203_frmDd_cklSerieDocumento\"]/option");
     By selectSerieDocs = By.id("0401040203_frmDd_cklSerieDocumento");
     By selectMonedaDocs =By.id("0401040204_frmDd_cklMonedaDocumento");
     By selectCondicionPagoDoc=  By.id("condicionPagoDocumento");
@@ -45,15 +51,14 @@ public class ComprobanteFacPage extends BasePage{
     By buttonAceptarIemManual=By.xpath("(//app-agregar-item-manual//button)[2]");
 
     By buttonEmitir=By.id("0401010302_frBusquedaItem_btnEmitir");
-
+    By iframeElement = By.tagName("iframe");
 
 
 
 
     public void datosCliente() {
-        /*WebElement buttonLog = driver.findElement(linkFacturaFac);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", buttonLog);*
-         */
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(selectTipoDocClienteValidation, 1));
+        
         select(selectTipoDocCliente, "RUC");
         type(inputDocCliente,"10725709400");
         WebElement buttonSearchDocClientev2 = driver.findElement(buttonSearchDocCliente);
@@ -61,6 +66,8 @@ public class ComprobanteFacPage extends BasePage{
     }
 
     public void datosDocumento(){
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(selecsSerieDocsValidation, 1));
+        
         select(selectSerieDocs, "F100");
         select(selectMonedaDocs,"SOLES");
         select(selectCondicionPagoDoc,"CONTADO");
@@ -96,7 +103,15 @@ public class ComprobanteFacPage extends BasePage{
     public void  clickButtonEmitir(){
         WebElement btnEmitir = driver.findElement(buttonEmitir);
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", btnEmitir);
-
+    }
+    
+    public void validarDocumentoEmitido(){
+        //String textoValidacion = "Se Emitió el Documento";
+        
+        wait.until(ExpectedConditions.presenceOfElementLocated(iframeElement));
+        //Assert.assertEquals(abc,textoValidacion);
+            
+        System.out.println("EL DOCUMENTO YA ESTA EMITIDO");
     }
 
 

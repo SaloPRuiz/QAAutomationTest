@@ -1,22 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite Luma Ecomerce">
-    <test
-          name="Register Test">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true"
+          name="C:/Users/user/IdeaProjects/BootcampSmartQA/src/test/java/com/magento/tests/FacturaTest.java">
         <classes>
-            <class name="com.magento.tests.RegisterTest">
+            <class name="com.magento.tests.FacturaTest">
                 <methods>
-                    <include name="registerNewAccountWithRequiredInformation"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
-    <test
-            name="Login Test">
-        <classes>
-            <class name="com.magento.tests.LoginTest">
-                <methods>
-                    <include name="doLogin"/>
+                    <include name="facturaSimple"/>
                 </methods>
             </class>
         </classes>
