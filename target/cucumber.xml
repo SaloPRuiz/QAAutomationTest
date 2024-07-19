@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="38.022" tests="1" skipped="0" failures="0" errors="0">
+<testcase classname="Emision de factura" name="Emision simple" time="37.931">
+<system-out><![CDATA[
+Given usuario logueado......................................................passed
+When Se ingresan los datos de cliente e items...............................passed
+And Se presiona emitir......................................................passed
+Then Aparece la vista del pdf de la factura emitida.........................passed
+]]></system-out>
+</testcase>
+</testsuite>

@@ -1,10 +1,12 @@
 package com.magento.tests;
-
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 
 public class FacturaTest extends BaseTest {
+    public FacturaTest() {
+        setup();
+    }
     
     @Test(dataProvider = "users")
     public void facturaSimple(String s1, String s2){

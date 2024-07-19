@@ -15,12 +15,12 @@ import org.testng.annotations.BeforeMethod;
 import java.time.Duration;
 
 public class BaseTest {
-
     protected static WebDriver driver;
     protected RegisterPage registerPage;
-    protected LoginPage loginPage;
-    protected HomePage homePage;
-    protected ComprobanteFacPage comprobanteFacPage;
+    public LoginPage loginPage;
+    public HomePage homePage;
+    public ComprobanteFacPage comprobanteFacPage;
+    
     @BeforeMethod
     public void setup(){
         driver= new EdgeDriver();//instanciando el objeto driver

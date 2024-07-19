@@ -9,36 +9,21 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 public class LoginPage extends BasePage {
-
+    
     public LoginPage(WebDriver driver2) {
         super(driver2);
         visit(Variable.BASE_URL);
     }
-
-    /**
-     * Web Elements
-     */
-
+    
     By userInput = By.id("0000000002_frmLogin_inUsuario");
     By passInput = By.id("0000000003_frmLogin_inPassword");
     By bntLogin = By.id("0000000004_frmLogin_btnIngresar");
-    By linkRecoverPass=By.linkText("Forgot password?");
-
-    /**
-     * Methods
-     */
-
+    
     public void fillOutFormData(String sUser, String sPass) {
         type(userInput, sUser);
         type(passInput, sPass);
         WebElement buttonLog = driver.findElement(bntLogin);
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", buttonLog);
-
     }
-    public void goToRecoverPassLink() {
-        click(linkRecoverPass);
-
-    }
-
 }
 

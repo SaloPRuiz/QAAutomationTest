@@ -5,6 +5,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 import java.io.Console;
+import java.util.regex.Pattern;
 
 public class ComprobanteFacPage extends BasePage{
 
@@ -53,12 +54,15 @@ public class ComprobanteFacPage extends BasePage{
     // SWAL-ALERT
     By swalTextLocator = By.id("swal2-content");
 
+    // Razon-socialinpuit
+    By inputRazonSocial = By.id("RazonSocial");
 
 
     public void datosCliente() {
         int intentos = 0;
         int intentosMaximos = 5;
         boolean llenadoExitoso = false;
+        Pattern pattern = Pattern.compile("^.+$");
 
         while (intentos < intentosMaximos && !llenadoExitoso) {
             try {
@@ -69,6 +73,11 @@ public class ComprobanteFacPage extends BasePage{
                 type(inputDocCliente,"10725709400");
                 WebElement buttonSearchDocClientev2 = driver.findElement(buttonSearchDocCliente);
                 ((JavascriptExecutor) driver).executeScript("arguments[0].click();", buttonSearchDocClientev2);
+                wait.until(driver -> {
+                    String value = driver.findElement(inputRazonSocial).getAttribute("value");
+                    System.out.println("Value in input field: " + value);
+                    return value != null && !value.isEmpty();
+                });
                 
             } catch (TimeoutException e) {
                 System.out.println("El select no se llenó a tiempo, intentando nuevamente...");
