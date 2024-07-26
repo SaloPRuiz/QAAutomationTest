@@ -5,6 +5,10 @@ Feature: Emision de factura
 
   Background: Emision de comprobantes
     Given usuario logueado
+    |Username|Password|
+    |demo-pvlg|demo123|
+    |fami-aqp|12345|
+    |altas-aqp|12345|
 
   @scenario01
   Scenario: Emision simple

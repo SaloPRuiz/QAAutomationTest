@@ -42,11 +42,23 @@ public class BasePage {
     public void type(By element, String text){
         find(element).sendKeys(text);
     }
+
+    public void type(WebElement element, String text){
+        element.sendKeys(text);
+    }
+    
     public void select(By element, String text){
         Select cb = new Select(find(element));
         cb.selectByVisibleText(text);
 
     }
+
+    public void select(WebElement element, String text){
+        Select cb = new Select(element);
+        cb.selectByVisibleText(text);
+
+    }
+    
     public void selectByValue(By element, String text){
         Select cb = new Select(find(element));
         cb.selectByValue(text);
