@@ -55,7 +55,8 @@ public class ComprobanteFacPage extends BasePage {
     By iframeElement = By.tagName("iframe");
 
     // SWAL-ALERT
-    By swalTextLocator = By.id("swal2-content");
+    @FindBy(id = "swal2-content")
+    private WebElement swalTextLocator;
 
     // Razon-socialinpuit
     By inputRazonSocial = By.id("RazonSocial");
@@ -114,9 +115,9 @@ public class ComprobanteFacPage extends BasePage {
     }
     
     public void validarDocumentoEmitido(){
-        wait.until(ExpectedConditions.presenceOfElementLocated(swalTextLocator));
-        WebElement swalTextElement = driver.findElement(swalTextLocator);
-        String actualSwalText = swalTextElement.getText();
+        wait.until(ExpectedConditions.visibilityOf(swalTextLocator));
+        // WebElement swalTextElement = driver.findElement(swalTextLocator);
+        String actualSwalText = swalTextLocator.getText();
         String expectedSwalText = "Se Emitió el Documento";
 
         Assert.assertEquals(expectedSwalText, actualSwalText);

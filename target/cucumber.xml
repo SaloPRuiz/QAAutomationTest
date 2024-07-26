@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="24.661" tests="1" skipped="0" failures="0" errors="0">
-<testcase classname="Emision de factura" name="Emision simple" time="24.537">
+<testsuite name="Cucumber" time="88.797" tests="3" skipped="0" failures="0" errors="0">
+<testcase classname="Emision de factura" name="Emision de factura con diferentes usuarios - Example #1.1" time="28.17">
+<system-out><![CDATA[
+Given usuario logueado......................................................passed
+When Se ingresan los datos de cliente e items...............................passed
+And Se presiona emitir......................................................passed
+Then Aparece la vista del pdf de la factura emitida.........................passed
+]]></system-out>
+</testcase>
+<testcase classname="Emision de factura" name="Emision de factura con diferentes usuarios - Example #1.2" time="23.413">
+<system-out><![CDATA[
+Given usuario logueado......................................................passed
+When Se ingresan los datos de cliente e items...............................passed
+And Se presiona emitir......................................................passed
+Then Aparece la vista del pdf de la factura emitida.........................passed
+]]></system-out>
+</testcase>
+<testcase classname="Emision de factura" name="Emision de factura con diferentes usuarios - Example #1.3" time="37.077">
 <system-out><![CDATA[
 Given usuario logueado......................................................passed
 When Se ingresan los datos de cliente e items...............................passed

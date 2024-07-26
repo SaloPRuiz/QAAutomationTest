@@ -33,14 +33,18 @@ public class FacturaSteps {
         // Convertir la tabla de datos a una lista de mapas
         List<Map<String, String>> data = dataTable.asMaps(String.class, String.class);
 
+        String username = "";
+        String password = "";
+        
+        
         for (Map<String, String> row : data) {
-            String username = row.get("Username");
-            String password = row.get("Password");
+            username = row.get("Username");
+            password = row.get("Password");
             
             System.out.println(username + "," + password);
             
         }
-        loginPage.fillOutFormData("demo-pvlg", "demo123");
+        loginPage.fillOutFormData(username, password);
         homePage.irFactura();
     }
 

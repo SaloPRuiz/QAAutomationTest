@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
         monochrome = false,
         publish = true,
         dryRun = false,
-        tags = "@scenario01"
+        tags = "@multiple"
 
 )
 public class facturarunner {
