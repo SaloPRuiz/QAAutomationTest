@@ -18,7 +18,6 @@ public class BasePage {
     public BasePage (WebDriver driver){
         this.driver=driver;
         wait=new WebDriverWait(driver, Duration.ofSeconds(timeOutSec));
-
     }
 
     public void setTimeOutSec(int timeOutSec){

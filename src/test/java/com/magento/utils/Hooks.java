@@ -1,20 +1,13 @@
 package com.magento.utils;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
 import io.cucumber.java.Before;
-
-import java.time.Duration; 
+import org.openqa.selenium.edge.EdgeDriver;
 
 public class Hooks {
-    private final WebDriver driver;
-
-    public Hooks(WebDriver driver) {
-        this.driver = driver;
-    }
+    public static WebDriver driver;
     
     @Before
     public void setUp() {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().window().maximize();
+        driver = new EdgeDriver();
     }
 }
